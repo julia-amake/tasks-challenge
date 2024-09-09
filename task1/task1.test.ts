@@ -1,35 +1,16 @@
-import {isValid} from "./task1";
+import { isValid } from "./task1";
 
 describe('task 1 valid parentheses', () => {
-  test('() should return true', () => {
-    expect(isValid('()')).toBe(true);
+  test.each([
+    { data: '()', result: true },
+    { data: '()()', result: true },
+    { data: '((())())', result: true },
+    { data: ')', result: false },
+    { data: '(', result: false },
+    { data: ')(', result: false },
+    { data: '()(()', result: false },
+    { data: '()(()', result: false },
+  ])('should return the correct result', ({ data, result }) => {
+    expect(isValid(data)).toBe(result);
   });
-
-  test('()() should return true', () => {
-    expect(isValid('()()')).toBe(true);
-  });
-
-  test('((())()) should return true', () => {
-    expect(isValid('((())())')).toBe(true);
-  });
-
-  test(') should return false', () => {
-    expect(isValid(')')).toBe(false);
-  });
-
-  test('( should return false', () => {
-    expect(isValid('(')).toBe(false);
-  });
-
-  test(')( should return false', () => {
-    expect(isValid(')(')).toBe(false);
-  });
-
-  test('()(() should return false', () => {
-    expect(isValid('()(()')).toBe(false);
-  });
-
-  test('((((())) should return false', () => {
-    expect(isValid('()(()')).toBe(false);
-  });
-})
+});
