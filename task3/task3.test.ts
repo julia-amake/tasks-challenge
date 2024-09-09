@@ -1,31 +1,15 @@
-import {findTopItems} from "./task3";
+import { findTopItems } from "./task3";
 
 describe('task 3 — TOP k items', () => {
-  test('should return [2]', () => {
-    expect(findTopItems([2], 1)).toEqual([2]);
-  });
-
-  test('should return [3, 4, 5]', () => {
-    expect(findTopItems([1, 2, 3, 4, 5], 3)).toEqual([3, 4, 5]);
-  });
-
-  test('should return [3, 4, 5]', () => {
-    expect(findTopItems([1, 2, 3, 4, 4, 5], 3)).toEqual([3, 4, 5]);
-  });
-
-  test('should return [3, 4, 5, 6]', () => {
-    expect(findTopItems([6, 5, 4, 3, 2, 1], 4)).toEqual([3, 4, 5, 6]);
-  });
-
-  test('should return [4, 5]', () => {
-    expect(findTopItems([1, 5, 3, 2, 4], 2)).toEqual([4, 5]);
-  });
-
-  test('should return [1, 5]', () => {
-    expect(findTopItems([1, 5], 3)).toEqual([1, 5]);
-  });
-
-  test('should return []', () => {
-    expect(findTopItems([], 3)).toEqual([]);
+  test.each([
+    { arr: [2], top: 1, expected: [2] },
+    { arr: [1, 2, 3, 4, 5], top: 3, expected: [3, 4, 5] },
+    { arr: [1, 2, 3, 4, 4, 5], top: 3, expected: [3, 4, 5] },
+    { arr: [6, 5, 4, 3, 2, 1], top: 4, expected: [3, 4, 5, 6] },
+    { arr: [1, 5, 3, 2, 4], top: 2, expected: [4, 5] },
+    { arr: [1, 5], top: 3, expected: [1, 5] },
+    { arr: [], top: 3, expected: [] },
+  ])('should return the correct result', ({ arr, top, expected }) => {
+    expect(findTopItems(arr, top)).toEqual(expected);
   });
 });
