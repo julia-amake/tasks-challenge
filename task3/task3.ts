@@ -4,9 +4,6 @@
 // Вернуть массив чисел в порядке возрастания
 // Числа на вход > 0, целые
 
-export const findTopItems = (arr: number[], k: number) => {
-  const sortedUniqArr = [...new Set(arr)].sort((a, b) => a - b);
-
-  if (sortedUniqArr.length <= k) return sortedUniqArr;
-  return sortedUniqArr.slice(-k);
-};
+export const findTopItems = (arr: number[], k: number) => (
+ [...new Set(arr)].sort((a, b) => a - b).slice(-k)
+);
